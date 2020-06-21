@@ -1,4 +1,4 @@
-const webCamPromise = (videoRef) => navigator.mediaDevices
+export const webCamPromise = (videoRef) => navigator.mediaDevices
   .getUserMedia({
     audio: false,
     video: {
@@ -14,28 +14,8 @@ const webCamPromise = (videoRef) => navigator.mediaDevices
       }
     })
   })
-
-
-// use the web cam stream to predict objects on images
-;(async () => {  
-  const videoRef = document.getElementById('video')
-  const canvasRef = document.getElementById('canvas')
   
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    const model = cocoSsd.load()
-    const webCam = webCamPromise(videoRef)
-    
-    const [predictions] = await Promise.all([model, webCam])
-    
-    try {
-      detectFrame(canvasRef, videoRef, predictions)
-    } catch(error) {
-      console.error(error)
-    }
-  }
-})()  // using an Async Immediately-Invoked Function Expression so we can use use Await instead of Promises
-  
-const detectFrame = (canvasRef, videoRef, model) => {
+export const detectFrame = (canvasRef, videoRef, model) => {
   model.detect(videoRef).then(predictions => {
     renderPredictions(canvasRef, predictions)
     requestAnimationFrame(() => {

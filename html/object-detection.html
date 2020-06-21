@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <title>Object Detection</title>
+    
+    <!-- Load TensorFlow.js. This is required to use the coco-ssd model. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load the coco-ssd model. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+    
+    <!-- make predictions -->
+    <script type="module" src="/js/object_detection.js"></script>
+  <head>
+  <body>    
+    <style>
+      .size {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .go-back {
+        position: fixed;
+        top: 520px;
+        left: 0;
+      }
+    </style>
+    
+    <div>
+      <video
+        class="size"
+        autoPlay
+        playsInline
+        muted
+        id="video"
+        width="600"
+        height="500"
+      />      
+    </div>
+    <div>
+      <canvas
+        class="size"
+        id="canvas"
+        width="600"
+        height="500"
+      />  
+    </div>
+    
+    <a href="/" class="go-back">Go Back</a>
+  </body>
+</html>
