@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <title>TensorFlow.js Study</title>
+    
+    <!-- Load TensorFlow.js. This is required to use the coco-ssd model. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load the coco-ssd model. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+  <head>
+  <body>    
+    <div>
+      <video
+        class="size"
+        autoPlay
+        playsInline
+        muted
+        id="video"
+        width="600"
+        height="500"
+      />      
+    </div>
+    <canvas
+      class="size"
+      id="canvas"
+      width="600"
+      height="500"
+    />
+    <style>
+      .size {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    </style>
+
+    <!-- make predictions -->
+    <script type="module" src="./predictions.js"></script>
+  </body>
+</html>
