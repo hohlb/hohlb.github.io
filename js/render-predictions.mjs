@@ -1,30 +1,4 @@
-export const webCamPromise = (videoRef) => navigator.mediaDevices
-  .getUserMedia({
-    audio: false,
-    video: {
-      facingMode: 'user'
-    }
-  })
-  .then(stream => {
-    window.stream = stream
-    videoRef.srcObject = stream
-    return new Promise((resolve, reject) => {
-      videoRef.onloadedmetadata = () => {
-        resolve()
-      }
-    })
-  })
-  
-export const detectFrame = (canvasRef, videoRef, model) => {
-  model.detect(videoRef).then(predictions => {
-    renderPredictions(canvasRef, predictions)
-    requestAnimationFrame(() => {
-      detectFrame(canvasRef, videoRef, model)
-    })
-  })
-}
-
-const renderPredictions = (canvasRef, predictions) => {
+export const renderPredictions = (canvasRef, predictions) => {
   const ctx = canvasRef.getContext('2d')    
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
   // Font options.
