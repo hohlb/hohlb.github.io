@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <title>Image Classification</title>
+    
+    <!-- Load TensorFlow.js. This is required to use the coco-ssd model. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <!-- Load the mobilenet model. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet"></script>
+    <!-- Load the knn classifier. -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+
+    
+    <!-- make predictions -->
+    <script type="module" src="/js/custom-image-classifier.js"></script>
+  <head>
+  <body>    
+    <style>
+      h3, a  {
+        font-family: sans-serif;
+      }
+
+      .size {
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+      .go-back {
+        position: fixed;
+        top: 680px;
+        left: 0;
+      }
+      h3 {
+        position: fixed;
+        top: 510px;
+        left: 0;
+      }
+      
+      button {
+        display: inline-block;
+        margin-top: 550px;
+        
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        display: inline-block;
+        font-size: 16px;
+      }
+      
+      button:focus
+      /*, button:active,
+      button:focus-visible,
+      button:focus-within,
+      button:target,
+      button:visited*/ {
+        outline: none;
+      }
+    </style>
+    
+    <div>
+      <video
+        class="size"
+        autoPlay
+        playsInline
+        muted
+        id="video"
+        width="600"
+        height="500"
+      />      
+    </div>
+    <div>
+      <canvas
+        class="size"
+        id="canvas"
+        width="600"
+        height="500"
+      />  
+    </div>
+    
+    <h3>Add a class label for the current image:</h3>
+    <button id="class-a">Class A</button>
+    <button id="class-b">Class B</button>
+    <button id="class-c">Class C</button>
+    
+    <a href="/" class="go-back">Go Back</a>
+  </body>
+</html>

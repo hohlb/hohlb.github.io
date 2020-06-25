@@ -1,4 +1,4 @@
-import { renderPredictions } from './render-predictions.mjs'
+import { renderObjectDetection } from './render-predictions.mjs'
 // the "cocoSsd" and "tf" variables are not explicitly imported because module imports for tensorflow.js are only provided for node.js packages, not directly for the CDN scripts (therefore those variables are loaded into the global namespace for now)
 
 // use the web cam stream to predict objects on images
@@ -16,7 +16,7 @@ import { renderPredictions } from './render-predictions.mjs'
     const img = await webCam.capture()
     const predictions = await model.detect(img)
 
-    renderPredictions(canvasRef, predictions)
+    renderObjectDetection(canvasRef, predictions)
        
     // Dispose the tensor to release the memory.
     img.dispose()

@@ -1,31 +1,55 @@
-export const renderPredictions = (canvasRef, predictions) => {
-  const ctx = canvasRef.getContext('2d')    
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-  // Font options.
-  const font = '16px sans-serif'
-  ctx.font = font
-  ctx.textBaseline = 'top'
-  predictions.forEach(prediction => {
-    const x = prediction.bbox[0]
-    const y = prediction.bbox[1]
-    const width = prediction.bbox[2]
-    const height = prediction.bbox[3]
-    // Draw the bounding box.
-    ctx.strokeStyle = '#00FFFF'
-    ctx.lineWidth = 4
-    ctx.strokeRect(x, y, width, height)
-    // Draw the label background.
-    ctx.fillStyle = '#00FFFF'
-    const textWidth = ctx.measureText(prediction.class).width
-    const textHeight = parseInt(font, 10) // base 10
-    ctx.fillRect(x, y, textWidth + 4, textHeight + 4)
-  })
+export const renderImageClassification = (canvasRef, predictedClass, classes) => {
+  const canvasContext = createCanvasBase(canvasRef)
+  const boundingBox = [0, 0, canvasContext.canvas.width, canvasContext.canvas.height]
+  
+  const predictedClassLabel = classes[predictedClass.label]
+  const predictedClassProbability = predictedClass.confidences[predictedClass.label]
+  const predictedClassProbabilityPercentage = predictedClassProbability.toLocaleString('en', {style: 'percent'})
+  const classLabel = `${predictedClassLabel} ${predictedClassProbabilityPercentage}`
+      
+  drawBoundingBox(canvasContext, boundingBox, classLabel)
+  drawClassLabel(canvasContext, boundingBox, classLabel)
+}
 
-  predictions.forEach(prediction => {
-    const x = prediction.bbox[0]
-    const y = prediction.bbox[1]
+export const renderObjectDetection = (canvasRef, predictions) => {
+  const canvasContext = createCanvasBase(canvasRef)
+  
+  predictions.forEach(prediction => drawBoundingBox(canvasContext, prediction.bbox, prediction.class))
+  predictions.forEach(prediction => drawClassLabel(canvasContext, prediction.bbox, prediction.class))
+}
+
+const createCanvasBase = (canvasRef) => {
+  const canvasContext = canvasRef.getContext('2d')    
+  canvasContext.clearRect(0, 0, canvasContext.canvas.width, canvasContext.canvas.height)
+  canvasContext.font = '16px sans-serif'
+  canvasContext.textBaseline = 'top'
+  
+  return canvasContext
+}
+
+const drawBoundingBox = (canvasContext, boundingBox, classLabel) => {
+    const x = boundingBox[0]
+    const y = boundingBox[1]
+    const width = boundingBox[2]
+    const height = boundingBox[3]
+    
+    // Draw the bounding box.
+    canvasContext.strokeStyle = '#00FFFF'
+    canvasContext.lineWidth = 4
+    canvasContext.strokeRect(x, y, width, height)
+    
+    // Draw the label background.
+    canvasContext.fillStyle = '#00FFFF'
+    const textWidth = canvasContext.measureText(classLabel).width
+    const textHeight = parseInt(canvasContext.font, 10) // base 10
+    canvasContext.fillRect(x, y, textWidth + 4, textHeight + 4)
+}
+
+const drawClassLabel = (canvasContext, boundingBox, classLabel) => {
+    const x = boundingBox[0]
+    const y = boundingBox[1]
+    
     // Draw the text last to ensure it's on top.
-    ctx.fillStyle = '#000000'
-    ctx.fillText(prediction.class, x, y)
-  })
+    canvasContext.fillStyle = '#000000'
+    canvasContext.fillText(classLabel, x, y)
 }

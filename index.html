@@ -8,7 +8,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
     <link rel="manifest" href="/assets/site.webmanifest">
-  <head>
+  </head>
   <body>
     <style>
       h1, p, a {
@@ -19,11 +19,19 @@
         height: 1em;
         padding-right: 0.2em;
       }
+
+      li {
+        font-size: 1.5em;
+      }
+      li:not(:first-of-type) {
+        padding-top: 1em;
+      }
     </style>
     <h1><img src="/assets/tensorflow-logo.png" alt="" />TensorFlow.js Experiments</h1>
     
     <ul>
-      <li><a href="/html/object-detection-coco-ssd.html">Object Detection via COCO SSD</a></li>
+      <li><a href="/html/object-detection.html">Object Detection (pre-trained)</a></li>
+      <li><a href="/html/custom-image-classifier.html">Image Classifier (online trainable)</a></li>
     </ul>
   </body>
 </html>
