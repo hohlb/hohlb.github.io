@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <title>Image Classification</title>
-    
+
     <!-- Load TensorFlow.js. This is required to use the coco-ssd model. -->
     <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
     <!-- Load the mobilenet model. -->
@@ -10,11 +10,10 @@
     <!-- Load the knn classifier. -->
     <script defer src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
 
-    
     <!-- make predictions -->
     <script type="module" src="/js/custom-image-classifier.js"></script>
   </head>
-  <body>    
+  <body>
     <style>
       h3, a  {
         font-family: sans-serif;
@@ -35,7 +34,7 @@
         top: 510px;
         left: 0;
       }
-      
+ 
       button {
         display: inline-block;
         margin-top: 550px;
@@ -47,7 +46,7 @@
         display: inline-block;
         font-size: 16px;
       }
-      
+
       button:focus
       /*, button:active,
       button:focus-visible,
@@ -67,7 +66,7 @@
         id="video"
         width="600"
         height="500"
-      />      
+      />
     </div>
     <div>
       <canvas
@@ -77,12 +76,14 @@
         height="500"
       />  
     </div>
-    
-    <h3>Add a class label for the current image:</h3>
+
+    <h3>Point your camera to an object, then add a class label for it:</h3>
     <button id="class-a">Class A</button>
     <button id="class-b">Class B</button>
     <button id="class-c">Class C</button>
-    
+
+    <p>After 3 labels per different object, your object will be recognized when you point you camera to it again.</p>
+
     <a href="/" class="go-back">Go Back</a>
   </body>
 </html>
