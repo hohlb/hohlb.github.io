@@ -11,6 +11,17 @@
   </head>
   <body>
     <style>
+      /* horizontally and vertically center */
+      html {
+        height: 100%;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        height: 100%;
+        margin: 0; /* avoid unnecessary scroll bars */
+      }
+
       h1, p, a {
         font-family: sans-serif;
       }
@@ -27,11 +38,13 @@
         padding-top: 1em;
       }
     </style>
-    <h1><img src="/assets/tensorflow-logo.png" alt="" />TensorFlow.js Experiments</h1>
-    
-    <ul>
-      <li><a href="/html/object-detection.html">Object Detection (pre-trained)</a></li>
-      <li><a href="/html/custom-image-classifier.html">Image Classifier (online trainable)</a></li>
-    </ul>
+    <main>
+      <h1><img src="/assets/tensorflow-logo.png" alt="" />TensorFlow.js Experiments</h1>
+        
+      <ul>
+        <li><a href="/html/object-detection.html">Object Detection (pre-trained)</a></li>
+        <li><a href="/html/custom-image-classifier.html">Image Classifier (online trainable)</a></li>
+      </ul>
+    </main>
   </body>
 </html>
